@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "373028495387",
+    "firebase_url": "https://fir-bellz.firebaseio.com",
+    "project_id": "fir-bellz",
+    "storage_bucket": "fir-bellz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373028495387:android:259161fcd6307099",
+        "android_client_info": {
+          "package_name": "com.th.samsen.tunyaporn.firebasebellz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373028495387-8qasai3p1qlh7gfh56j54sdk2ho7e1ui.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.th.samsen.tunyaporn.firebasebellz",
+            "certificate_hash": "ea60c371e5405ff00b61ca61780cd8c186ec313e"
+          }
+        },
+        {
+          "client_id": "373028495387-e2bi79224rkh28b8br2dotfjg9t1m5rt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs-QinhO0OGgJYyQDQtN2GiUqOuk0TRrA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373028495387-e2bi79224rkh28b8br2dotfjg9t1m5rt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

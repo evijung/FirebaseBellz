@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--Content-->
+    <LinearLayout
+        android:background="@drawable/login_masterung"
+        android:layout_marginLeft="@dimen/extra_margin"
+        android:layout_marginRight="@dimen/extra_margin"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--Email-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--Icon-->
+            <ImageView
+                android:src="@drawable/ic_action_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <!--Email-->
+            <EditText
+                android:textSize="@dimen/h2"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <!--Password-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--Icon-->
+            <ImageView
+                android:src="@drawable/ic_action_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <!--Email-->
+            <EditText
+                android:textSize="@dimen/h2"
+                android:inputType="textPassword"
+                android:hint="@string/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <!--Login-->
+        <Button
+            android:text="Login"
+            android:textSize="@dimen/h2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!--New Register-->
+        <TextView
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic"
+            android:textSize="@dimen/h2"
+            android:text="@string/new_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
