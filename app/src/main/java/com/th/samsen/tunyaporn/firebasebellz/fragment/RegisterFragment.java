@@ -5,20 +5,27 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.th.samsen.tunyaporn.firebasebellz.MainActivity;
 import com.th.samsen.tunyaporn.firebasebellz.R;
+
 
 /**
  * Created by TunyapornSamsen on 11/25/2017 AD.
  */
 
 public class RegisterFragment extends Fragment {
+
+    private String TAG = "RegisterFragment";
+    private String nameString,emailString, passwordString;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -29,6 +36,41 @@ public class RegisterFragment extends Fragment {
 
 //        Create Menu Icon
         setHasOptionsMenu(true);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.mnuSave:
+//                Check Space
+                checkSpace();
+
+
+
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void checkSpace() {
+//        Initial View
+
+        EditText nameEditText = getView().findViewById(R.id.edtName);
+        EditText emailEditText = getView().findViewById(R.id.edtEmail);
+        EditText passwordEditText = getView().findViewById(R.id.edtPassword);
+
+        nameString = nameEditText.getText().toString();
+        emailString = emailEditText.getText().toString();
+        passwordString = passwordEditText.getText().toString();
+
+        if (nameString.equals("") || emailString.equals("") || passwordString.equals("")) {
+
+        }
+
 
     }
 
