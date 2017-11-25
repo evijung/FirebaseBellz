@@ -4,4 +4,5 @@
     <dimen name="margin">10dp</dimen>
     <dimen name="h1">24sp</dimen>
     <dimen name="h2">18dp</dimen>
+    <dimen name="mini_margin">5dp</dimen>
 </resources>

@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/my_toolbar" />
+
     <!--Content-->
     <LinearLayout
         android:background="@drawable/login_masterung"
@@ -61,6 +63,8 @@
 
         <!--New Register-->
         <TextView
+            android:id="@+id/txtNewRegister"
+            android:clickable="true"
             android:textColor="@color/colorAccent"
             android:layout_marginTop="@dimen/margin"
             android:layout_gravity="center_horizontal"
