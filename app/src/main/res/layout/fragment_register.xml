@@ -5,15 +5,17 @@
     android:orientation="vertical">
 
     <!--Toolbar-->
-    <include layout="@layout/my_toolbar" />
+    <include
+        android:id="@+id/tbrRegister"
+        layout="@layout/my_toolbar" />
 
 
     <!--Content-->
     <LinearLayout
-        android:background="@drawable/login_masterung"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/extra_margin"
+        android:background="@drawable/login_masterung"
         android:orientation="vertical">
 
         <!--Display Name-->
