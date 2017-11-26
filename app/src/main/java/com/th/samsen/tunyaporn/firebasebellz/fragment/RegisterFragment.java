@@ -1,11 +1,12 @@
 package com.th.samsen.tunyaporn.firebasebellz.fragment;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,9 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.th.samsen.tunyaporn.firebasebellz.MainActivity;
 import com.th.samsen.tunyaporn.firebasebellz.R;
+import com.th.samsen.tunyaporn.firebasebellz.utility.MyAlertDialog;
 
 
 /**
@@ -26,6 +33,8 @@ public class RegisterFragment extends Fragment {
 
     private String TAG = "RegisterFragment";
     private String nameString,emailString, passwordString;
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -63,15 +72,41 @@ public class RegisterFragment extends Fragment {
         EditText emailEditText = getView().findViewById(R.id.edtEmail);
         EditText passwordEditText = getView().findViewById(R.id.edtPassword);
 
-        nameString = nameEditText.getText().toString();
-        emailString = emailEditText.getText().toString();
-        passwordString = passwordEditText.getText().toString();
+        nameString = nameEditText.getText().toString().trim();
+        emailString = emailEditText.getText().toString().trim();
+        passwordString = passwordEditText.getText().toString().trim();
 
-        if (nameString.equals("") || emailString.equals("") || passwordString.equals("")) {
-
+        if (nameString.isEmpty() || emailString.isEmpty() || passwordString.isEmpty()) {
+            MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity());
+            myAlertDialog.myNormalDialog("Have Space",getString(R.string.sub_register));
+        }else{
+            updateFirebase();
         }
 
 
+    }
+
+    private void updateFirebase() {
+//        Setup ProgressDialog
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle("Waiting...");
+        progressDialog.show();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                progressDialog.dismiss();
+                if (task.isSuccessful()) {
+                    Toast.makeText(getActivity(), "Update Firebase Successful", Toast.LENGTH_SHORT).show();
+                    getActivity().getSupportFragmentManager().popBackStack();
+
+                } else {
+                    MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity());
+                    myAlertDialog.myNormalDialog("Update Firebase Fail",task.getException().getMessage());
+                }
+            }
+        });
     }
 
     @Override

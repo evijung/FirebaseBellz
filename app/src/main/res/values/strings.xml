@@ -5,4 +5,5 @@
     <string name="new_register">New Register</string>
     <string name="name">Display Name...</string>
     <string name="save">Save</string>
+    <string name="sub_register">Please Fill All Every Blank</string>
 </resources>
