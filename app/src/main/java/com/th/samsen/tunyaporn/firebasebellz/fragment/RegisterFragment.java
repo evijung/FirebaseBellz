@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +21,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.th.samsen.tunyaporn.firebasebellz.MainActivity;
 import com.th.samsen.tunyaporn.firebasebellz.R;
 import com.th.samsen.tunyaporn.firebasebellz.utility.MyAlertDialog;
@@ -35,10 +40,15 @@ public class RegisterFragment extends Fragment {
     private String nameString,emailString, passwordString;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    private FirebaseUser firebaseUser;
+    private FirebaseDatabase databaseReference;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+//        Setup Firebase
+        setupFirebase();
 
 //        Create Toolbar
         createToolbar();
@@ -46,6 +56,11 @@ public class RegisterFragment extends Fragment {
 //        Create Menu Icon
         setHasOptionsMenu(true);
 
+    }
+
+    private void setupFirebase() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance();
     }
 
     @Override
@@ -92,12 +107,12 @@ public class RegisterFragment extends Fragment {
         progressDialog.setTitle("Waiting...");
         progressDialog.show();
 
-        firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if (task.isSuccessful()) {
+                    saveDisplayNameToFirebase();
                     Toast.makeText(getActivity(), "Update Firebase Successful", Toast.LENGTH_SHORT).show();
                     getActivity().getSupportFragmentManager().popBackStack();
 
@@ -107,6 +122,20 @@ public class RegisterFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void saveDisplayNameToFirebase() {
+
+//        Get UID Firebase
+        firebaseUser = firebaseAuth.getCurrentUser();
+
+        showLog();
+    }
+
+    private void showLog() {
+
+        Log.d(TAG, "showLog: UID ==> " + firebaseUser.getUid() + " Email ==> " + firebaseUser.getEmail());
+
     }
 
     @Override
